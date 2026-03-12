@@ -26,5 +26,17 @@
             </ListBox.ItemTemplate>
         </ListBox>
     </StackPanel>
+    
+    <StackPanel Margin="20" Spacing="12">
+        <TextBlock Text="Pojazdy" FontSize="35"/>
+        
+        <TextBlock Text="Dodaj nowy pojazd" FontWeight="Bold" Margin="0, 0, 0, 8"/>
+        
+        <TextBox Watermark="Nazwa pojazdu" Text="{Binding NewName}" />
+        
+        <TextBox Watermark="Numer rejestracyjny" Text="{Binding NewLicenseNumber}"/>
+        
+        
+    </StackPanel>
 
 </Window>
