@@ -9,12 +9,22 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="FleetManager">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <StackPanel Margin="20" Spacing="12">
+        <ListBox ItemsSource="{Binding Vehicles}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Width="400" Spacing="5">
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                        
+                        <TextBlock Text="{Binding LicenceNumber}" FontStyle="Oblique"/>
+                        
+                        <TextBlock Text="{Binding FuelPercentage}"/>
+                        
+                        <TextBlock Text="{Binding Status}" FontWeight="Bold"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
 
 </Window>

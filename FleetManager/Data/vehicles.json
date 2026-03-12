@@ -1,0 +1,38 @@
+[
+  {
+    "Name": "Ford Transit",
+    "LicenceNumber": "NO 1234A",
+    "FuelPercentage": 78,
+    "Status": "available"
+  },
+  {
+    "Name": "Toyota Corolla",
+    "LicenceNumber": "GD 5678B",
+    "FuelPercentage": 52,
+    "Status": "in route"
+  },
+  {
+    "Name": "Skoda Octavia",
+    "LicenceNumber": "WA 9012C",
+    "FuelPercentage": 34,
+    "Status": "available"
+  },
+  {
+    "Name": "Volkswagen Crafter",
+    "LicenceNumber": "KR 3456D",
+    "FuelPercentage": 15,
+    "Status": "service"
+  },
+  {
+    "Name": "Renault Master",
+    "LicenceNumber": "PO 7890E",
+    "FuelPercentage": 63,
+    "Status": "in route"
+  },
+  {
+    "Name": "Mercedes Sprinter",
+    "LicenceNumber": "EL 1122F",
+    "FuelPercentage": 90,
+    "Status": "available"
+  }
+]
