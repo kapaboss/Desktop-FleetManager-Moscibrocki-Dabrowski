@@ -6,7 +6,11 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
+using Avalonia;
+using FleetManager.Extensions;
 using FleetManager.Models;
+using FleetManager.Views;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
@@ -25,8 +29,12 @@ public class MainWindowViewModel : ViewModelBase
     [Reactive] public int NewFuelPercentage { get; set; } = 0;
     [Reactive] public string NewStatus { get; set; } =  string.Empty;
     
+    public Vehicle? SelectedVehicle { get; set; }
+    
     public ReactiveCommand<Unit, Unit> AddCommand { get; }
     public ReactiveCommand<Unit, Unit> SaveCommand { get; }
+    
+    public ReactiveCommand<Vehicle, Unit> EditCommand { get; }
     
 
     public MainWindowViewModel()
@@ -35,6 +43,8 @@ public class MainWindowViewModel : ViewModelBase
 
         AddCommand = ReactiveCommand.Create(AddVehicles);
         SaveCommand = ReactiveCommand.Create(SaveToJson);
+
+        EditCommand = ReactiveCommand.CreateFromTask<Vehicle>(OpenEditWindowAsync);
     }
 
     private void AddVehicles()
@@ -48,7 +58,7 @@ public class MainWindowViewModel : ViewModelBase
         Vehicles.Add(new Vehicle
         {
             Name = NewName,
-            LicenceNumber = NewLicenseNumber,
+            LicenseNumber = NewLicenseNumber,
             FuelPercentage = NewFuelPercentage,
             Status = NewStatus
         });
@@ -98,5 +108,13 @@ public class MainWindowViewModel : ViewModelBase
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    private async Task OpenEditWindowAsync(Vehicle vehicle)
+    {
+        await new EditWindow
+        {
+            DataContext = new EditWindowViewModel(vehicle)
+        }.ShowDialog(Application.Current!.GetMainWindow()!);
     }
 }

@@ -6,26 +6,40 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="FleetManager.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        x:CompileBindings="False"
         Icon="/Assets/avalonia-logo.ico"
         Title="FleetManager">
 
     <Grid RowDefinitions="*, Auto" Margin="20">
-        <StackPanel Grid.Row="0" Spacing="12">
-            <TextBlock Text="Pojazdy" FontSize="35" Margin="0,0,0,10"/>
+        <Grid Grid.Row="0" RowDefinitions="Auto,*" RowSpacing="12">
+    
+            <TextBlock Grid.Row="0"
+                       Text="Pojazdy" 
+                       FontSize="35" 
+                       Margin="0,0,0,10"/>
+    
+            <ListBox Grid.Row="1"
+                     ItemsSource="{Binding Vehicles}">
         
-            <ListBox ItemsSource="{Binding Vehicles}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Width="400" Spacing="5">
                             <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
                             <TextBlock Text="{Binding LicenseNumber}" FontStyle="Oblique"/>
-                            <TextBlock Text="{Binding FuelLevel, StringFormat='{}Paliwo: {0}%'}"/>
+                            <TextBlock Text="{Binding FuelPercentage, StringFormat='{}Paliwo: {0}%'}"/>
                             <TextBlock Text="{Binding Status}" FontWeight="Bold"/>
+                            
+                            <Button Content="Edytuj"
+                                    HorizontalAlignment="Left"
+                                    Command="{Binding $parent[Window].DataContext.EditCommand}"
+                                    CommandParameter="{Binding}"    
+                                    />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+        
             </ListBox>
-        </StackPanel>
+        </Grid>
 
         <StackPanel Grid.Row="1" Spacing="12" Margin="0,20,0,0">
             <Separator/>
@@ -33,9 +47,16 @@
         
             <TextBox Watermark="Nazwa pojazdu" Text="{Binding NewName}" />
             <TextBox Watermark="Numer rejestracyjny" Text="{Binding NewLicenseNumber}"/>
+            <TextBox Watermark="Poziom paliwa (%)" Text="{Binding NewFuelPercentage}"/>
+            <TextBox Watermark="Status pojazdu" Text="{Binding NewStatus}"/>
+            
         
             <Button Content="Dodaj do floty" 
-                    Command="{Binding AddVehicleCommand}" 
+                    Command="{Binding AddCommand}" 
+                    HorizontalAlignment="Stretch" 
+                    HorizontalContentAlignment="Center"/>
+            <Button Content="Zapisz flotę" 
+                    Command="{Binding SaveCommand}" 
                     HorizontalAlignment="Stretch" 
                     HorizontalContentAlignment="Center"/>
         </StackPanel>
