@@ -1,4 +1,3 @@
-<!-- (UserControl - widok) -->
 
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,28 +8,24 @@
              x:DataType="">
     <Border BorderBrush="#555" BorderThickness="1" CornerRadius="8" Margin="8" Padding="12">
         <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto">
-            <!-- Info -->
             <StackPanel Grid.Column="0" Margin="0,0,30,0">
                 <TextBlock Text="{Binding Vehicle.Brand}" FontSize="18" FontWeight="Bold"/>
                 <TextBlock Text="{Binding Vehicle.Model}" FontSize="15"/>
                 <TextBlock Text="{Binding Vehicle.RegistrationNumber}" Foreground="Gray"/>
             </StackPanel>
-
-            <!-- Fuel -->
+            
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                 <TextBlock Text="Fuel Level" FontWeight="SemiBold" Margin="0,0,0,4"/>
                 <ProgressBar Width="200" Height="22" Minimum="0" Maximum="100" 
                              Value="{Binding Vehicle.FuelLevel}"/>
                 <TextBlock Text="{Binding Vehicle.FuelPercentage}" HorizontalAlignment="Center" Margin="0,4,0,0"/>
             </StackPanel>
-
-            <!-- Status -->
+            
             <StackPanel Grid.Column="2" Margin="40,0" VerticalAlignment="Center">
                 <TextBlock Text="Status" FontWeight="SemiBold"/>
                 <TextBlock Text="{Binding Vehicle.Status}" FontSize="16" FontWeight="Bold"/>
             </StackPanel>
-
-            <!-- Buttons -->
+            
             <StackPanel Grid.Column="3" Orientation="Vertical" Spacing="8" Margin="20,0">
                 <Button Content="Refuel" Command="{Binding RefuelCommand}"/>
                 <Button Content="Send to Route" Command="{Binding SendToRouteCommand}"/>
