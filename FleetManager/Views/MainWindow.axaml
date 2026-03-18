@@ -9,34 +9,36 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="FleetManager">
 
-    <StackPanel Margin="20" Spacing="12">
-        <ListBox ItemsSource="{Binding Vehicles}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Width="400" Spacing="5">
-                        <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
-                        
-                        <TextBlock Text="{Binding LicenceNumber}" FontStyle="Oblique"/>
-                        
-                        <TextBlock Text="{Binding FuelPercentage}"/>
-                        
-                        <TextBlock Text="{Binding Status}" FontWeight="Bold"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </StackPanel>
-    
-    <StackPanel Margin="20" Spacing="12">
-        <TextBlock Text="Pojazdy" FontSize="35"/>
+    <Grid RowDefinitions="*, Auto" Margin="20">
+        <StackPanel Grid.Row="0" Spacing="12">
+            <TextBlock Text="Pojazdy" FontSize="35" Margin="0,0,0,10"/>
         
-        <TextBlock Text="Dodaj nowy pojazd" FontWeight="Bold" Margin="0, 0, 0, 8"/>
+            <ListBox ItemsSource="{Binding Vehicles}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="400" Spacing="5">
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding LicenseNumber}" FontStyle="Oblique"/>
+                            <TextBlock Text="{Binding FuelLevel, StringFormat='{}Paliwo: {0}%'}"/>
+                            <TextBlock Text="{Binding Status}" FontWeight="Bold"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Spacing="12" Margin="0,20,0,0">
+            <Separator/>
+            <TextBlock Text="Dodaj nowy pojazd" FontWeight="Bold" Margin="0, 8, 0, 8"/>
         
-        <TextBox Watermark="Nazwa pojazdu" Text="{Binding NewName}" />
+            <TextBox Watermark="Nazwa pojazdu" Text="{Binding NewName}" />
+            <TextBox Watermark="Numer rejestracyjny" Text="{Binding NewLicenseNumber}"/>
         
-        <TextBox Watermark="Numer rejestracyjny" Text="{Binding NewLicenseNumber}"/>
-        
-        
-    </StackPanel>
+            <Button Content="Dodaj do floty" 
+                    Command="{Binding AddVehicleCommand}" 
+                    HorizontalAlignment="Stretch" 
+                    HorizontalContentAlignment="Center"/>
+        </StackPanel>
+    </Grid>
 
 </Window>
