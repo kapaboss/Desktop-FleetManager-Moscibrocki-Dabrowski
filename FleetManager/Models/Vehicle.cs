@@ -1,12 +1,13 @@
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace FleetManager.Models;
 
 public class Vehicle : ReactiveObject
 {
-    public string Name { get; set; }
-    public string LicenseNumber {get; set;}
-    public int FuelPercentage {get; set;}
-    public string Status {get; set;}
+    [Reactive] public string Name { get; set; }
+    [Reactive] public string LicenseNumber {get; set;}
+    [Reactive] public int FuelPercentage {get; set;}
+    [Reactive] public string Status {get; set;}
     
 }

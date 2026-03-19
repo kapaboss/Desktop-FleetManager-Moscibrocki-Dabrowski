@@ -29,8 +29,6 @@ public class MainWindowViewModel : ViewModelBase
     [Reactive] public int NewFuelPercentage { get; set; } = 0;
     [Reactive] public string NewStatus { get; set; } =  string.Empty;
     
-    public Vehicle? SelectedVehicle { get; set; }
-    
     public ReactiveCommand<Unit, Unit> AddCommand { get; }
     public ReactiveCommand<Unit, Unit> SaveCommand { get; }
     

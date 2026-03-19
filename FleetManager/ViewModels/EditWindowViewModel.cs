@@ -41,10 +41,10 @@ public class EditWindowViewModel : ViewModelBase
         
         SaveCommand = ReactiveCommand.Create(() =>
         {
-            vehicle.Name = Name;
-            vehicle.LicenseNumber = LicenseNumber;
-            vehicle.FuelPercentage = FuelPercentage;
-            vehicle.Status = Status;
+            _vehicle.Name = Name;
+            _vehicle.LicenseNumber = LicenseNumber;
+            _vehicle.FuelPercentage = FuelPercentage;
+            _vehicle.Status = Status;
             CloseWindow();
         }, isValid);
 
